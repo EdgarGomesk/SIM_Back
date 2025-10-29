@@ -20,7 +20,7 @@ const app = express()
 
 // 👇 Agrega esto antes de tus rutas
 app.use(cors({
-  origin: 'http://localhost:5173', // permite solo tu front local
+  origin: 'https://simunicipal.netlify.app', // permite solo tu front local
   credentials: true,               // si manejas cookies (opcional)
 }));
 
