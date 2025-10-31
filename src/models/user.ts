@@ -2,7 +2,7 @@ import { Table, Column, DataType, Model } from 'sequelize-typescript';
 
 @Table({
   tableName: 'users',
-  timestamps: true, // opcional, crea createdAt y updatedAt automáticamente
+  timestamps: true,
 })
 export class User extends Model {
   @Column({
@@ -10,13 +10,26 @@ export class User extends Model {
     allowNull: false,
     unique: true,
   })
-  username!: string;
+  declare username: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  password!: string;
+  declare password: string;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  })
+  declare is_master: boolean;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  declare master_key_hash?: string;
 }
 
-export default User
+export default User;
