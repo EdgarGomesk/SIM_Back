@@ -3,14 +3,10 @@ import { body } from 'express-validator';
 import { createUser, login } from '../controllers/userController';
 import { hashPassword } from '../middleware/hashPassword';
 import { handleInputErrors } from '../middleware/validation';
+import { getMunicipios } from '../controllers/municipioController';
 
 const router = Router();
 
-/**
- * Validaciones + middlewares encadenados
- */
-
-// ✅ Crear usuario (solo para ti o pruebas)
 router.post(
   '/register',
   [
@@ -21,13 +17,13 @@ router.post(
     body('password')
       .notEmpty().withMessage('La contraseña es obligatoria')
       .isLength({ min: 6 }).withMessage('Debe tener al menos 6 caracteres'),
-    handleInputErrors, // Maneja errores
-    hashPassword,   // Hashea la contraseña
+    handleInputErrors, 
+    hashPassword,   
   ],
   createUser
 );
 
-// ✅ Login de usuario
+
 router.post(
   '/login',
   [

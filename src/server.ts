@@ -1,9 +1,10 @@
 import express from 'express' 
 import colors from 'colors'
 import morgan from 'morgan'
-import cors from 'cors'; // 👈 aquí
+import cors from 'cors'; 
 import { db } from './config/db'
 import userRouter from './routes/userRouter'
+import municipioRouter from './routes/municipioRouter';
 
 async function connectDB() {
     try {
@@ -18,10 +19,10 @@ async function connectDB() {
 connectDB()
 const app = express()
 
-// 👇 Agrega esto antes de tus rutas
+
 app.use(cors({
-  origin: 'https://simunicipal.netlify.app', // permite solo tu front local
-  credentials: true,               // si manejas cookies (opcional)
+  origin: 'http://localhost:5173',
+  credentials: true,               
 }));
 
 app.use(morgan('dev'))
@@ -29,5 +30,6 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 app.use('/api/auth', userRouter)
+app.use('/api/municipios', municipioRouter); 
 
 export default app
