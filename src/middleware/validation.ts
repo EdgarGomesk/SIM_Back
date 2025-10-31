@@ -7,4 +7,5 @@ export const handleInputErrors = (req: Request, res: Response, next: NextFunctio
         return res.status(400).json({ errors: errors.array() })
     }
     next()
+    //hola
 }
